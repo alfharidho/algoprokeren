@@ -1,0 +1,94 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPRFBpcUK+cAoUvod9FnHk2",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/alfharidho/algoprokeren/blob/main/Post%20Test%20Bab%20IV\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dmAEVkpqOog7",
+        "outputId": "6e8b4a89-d800-4af6-f3d7-fdf751541635"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "=== LAPORAN PENJUALAN ===\n",
+            "[TX01] Beras: 50 kg x Rp14000 = Rp700000\n",
+            "[TX02] Jagung: 100 kg x Rp7000 = Rp700000\n",
+            "[TX03] Cabai: 15 kg x Rp40000 = Rp600000\n",
+            "-----------------------------------\n",
+            "Total Pendapatan: Rp2000000\n"
+          ]
+        }
+      ],
+      "source": [
+        "def buat_transaksi(id_tx, nama_barang, jumlah_kg, harga_per_kg):\n",
+        "    return {\n",
+        "        \"id\": id_tx,\n",
+        "        \"nama_barang\": nama_barang,\n",
+        "        \"jumlah_kg\": jumlah_kg,\n",
+        "        \"harga_per_kg\": harga_per_kg,\n",
+        "        \"subtotal\": jumlah_kg * harga_per_kg\n",
+        "    }\n",
+        "\n",
+        "def hitung_total_pendapatan(daftar_transaksi):\n",
+        "    return sum(tx[\"subtotal\"] for tx in daftar_transaksi)\n",
+        "\n",
+        "def tampilkan_laporan(daftar_transaksi, total_pendapatan):\n",
+        "    print(\"=== LAPORAN PENJUALAN ===\")\n",
+        "    for tx in daftar_transaksi:\n",
+        "        print(f\"[{tx['id']}] {tx['nama_barang']}: {tx['jumlah_kg']} kg x Rp{tx['harga_per_kg']} = Rp{tx['subtotal']}\")\n",
+        "    print(\"-\" * 35)\n",
+        "    print(f\"Total Pendapatan: Rp{total_pendapatan}\")\n",
+        "\n",
+        "def main():\n",
+        "    daftar_transaksi = []\n",
+        "\n",
+        "    # Menyimpan transaksi\n",
+        "    t1 = buat_transaksi(\"TX01\", \"Beras\", 50, 14000)\n",
+        "    t2 = buat_transaksi(\"TX02\", \"Jagung\", 100, 7000)\n",
+        "    t3 = buat_transaksi(\"TX03\", \"Cabai\", 15, 40000)\n",
+        "\n",
+        "    daftar_transaksi.extend([t1, t2, t3])\n",
+        "\n",
+        "    # Menghitung total pendapatan\n",
+        "    total = hitung_total_pendapatan(daftar_transaksi)\n",
+        "\n",
+        "    # Menampilkan laporan akhir\n",
+        "    tampilkan_laporan(daftar_transaksi, total)\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()"
+      ]
+    }
+  ]
+}
